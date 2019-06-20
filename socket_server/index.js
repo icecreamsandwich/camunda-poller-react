@@ -2,7 +2,6 @@ var express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const axios = require('axios');
 var request = require('request');
 
 // This enables CORs and ensures that our frontend,
@@ -19,8 +18,7 @@ io.on('connection', function(socket) {
   // `chat` channel with "Hello World"
   // Our clientside should be able to see
   // this and print it out in the console
-  //io.emit("chat", "hello world");
-
+  
   //call api to get all the external tasks in particular intervals
   setInterval(() => {
     var host = 'http://192.168.1.104:8080';
@@ -37,14 +35,6 @@ io.on('connection', function(socket) {
       else io.emit('polled_tasks', body);
     });
   }, 10000);
-  /* var host = 'http://192.168.1.107:3535';
-    axios
-        .post(host + '/camunda/pollExternalTasks')
-        .then(res => {
-            var polled_tasks = JSON.parse(JSON.stringify(res.data));
-            io.emit("polled_tasks", polled_tasks);
-        })
-        .catch(err => console.log(err)) */
 });
 
 server.listen(5000, () => {
