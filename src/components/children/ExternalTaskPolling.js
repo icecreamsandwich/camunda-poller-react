@@ -1,48 +1,57 @@
-import React, { Component } from 'react'
-//import axios from 'axios';
+import React, { Component } from 'react';
 import { connect } from './Socket';
 import Cssloader from '../CssLoader';
 
 export default class ExternalTaskPolling extends Component {
-   state = {
-       external_tasks : ""
-   }
-    componentDidMount() {
-        this.timer = setInterval(
-            () => {
-                connect(message => {
-                    console.log(message);
-                    this.setState({
-                        external_tasks : JSON.stringify(message)
-                    })
+  state = {
+    external_tasks: '',
+  };
+  componentDidMount() {
+    connect(message => {
+      console.log(message);
+      this.setState({
+        external_tasks: message, //JSON.stringify(message)
+      });
+    });
+  }
+
+  render() {
+    if (!this.state.external_tasks) {
+      return <Cssloader />;
+    } else {
+      var external_tasks_ar = JSON.parse(this.state.external_tasks);
+    }
+    return (
+      <div>
+        <h2>External Tasks</h2>
+        <table className="table">
+          <tbody>
+            <tr>
+              <th>activityId</th>
+              <th>executionId</th>
+              <th>processDefinitionId</th>
+              <th>processInstanceId</th>
+              <th>lockExpirationTime</th>
+            </tr>
+
+            {external_tasks_ar && external_tasks_ar.length > 0
+              ? external_tasks_ar.map(items => {
+                  return (
+                    <React.Fragment key={items.id}>
+                      <tr>
+                        <td>{items.activityId}</td>
+                        <td>{items.executionId}</td>
+                        <td>{items.processDefinitionId}</td>
+                        <td>{items.processInstanceId}</td>
+                        <td>{items.lockExpirationTime}</td>
+                      </tr>
+                    </React.Fragment>
+                  );
                 })
-            },
-            5000,
-        );
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.timer)
-    }
-
-    render() {
-        if(!this.state.external_tasks){
-            return(<Cssloader />);
-        }
-        return (
-            <div>
-                <h2>External Tasks</h2>
-                {this.state.external_tasks && this.state.external_tasks.length > 0 ?
-                    this.state.external_tasks.map(items => {
-                        return (
-                            <React.Fragment>
-                            <p>{items.activityId}</p>
-                            <p>{items.activityInstanceId}</p>
-                            </React.Fragment>
-                        )
-                    })
-                    : ''}
-            </div>
-        )
-    }
+              : ''}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
