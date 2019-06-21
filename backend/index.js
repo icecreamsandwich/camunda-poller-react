@@ -18,38 +18,11 @@ app.use(
 );
 
 //App entry point
-app.get('/', function(req, res) {
+app.get("/", function(req, res) {
   res.send(`app is listening on port ${port}`);
 });
 
 //Camunda API's //
-
-//Polling external Tasks
-/* app.post('/camunda/pollExternalTasks', function (req, res) {
-    // configuration for the Client:
-    //  - 'baseUrl': url to the Workflow Engine
-    //  - 'logger': utility to automatically log important events
-    const config = { baseUrl: "http://192.168.1.104:8080/engine-rest", use: logger };
-
-    // create a Client instance with custom configuration
-    const client = new Client(config);
-
-    // susbscribe to the topic: 'creditScoreChecker'
-    try {
-        client.subscribe("cherry", async function ({ task, taskService }) { //createrpm
-            // Put your business logic
-            // complete the task
-            console.log(task);
-            res.send(task)
-            //res.send(task)
-            // await taskService.complete(task);
-             taskService.complete(task);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-}); */
-
 //Poll Normal Tasks
 app.post('/camunda/pollTasks', function(req, res) {
   var host = 'http://192.168.1.104:8080';

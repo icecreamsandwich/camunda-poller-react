@@ -1,0 +1,10 @@
+nohup: ignoring input
+yarn run v1.9.4
+$ react-scripts start
+Something is already running on port 3000.
+Done in 2.62s.
+nohup: ignoring input
+yarn run v1.9.4
+$ react-scripts start
+Something is already running on port 3000.
+Done in 1.27s.
