@@ -3,22 +3,37 @@ import { connect } from './Socket';
 import Cssloader from '../CssLoader';
 import { MDBDataTable } from 'mdbreact';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-/* import 'bootstrap-css-only/css/bootstrap.min.css'; */
+import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+/* import axios from 'axios'; */
 
 export default class ExternalTaskPolling extends Component {
   state = {
     external_tasks: '',
   };
   componentDidMount() {
-    connect(message => {
-      console.log(message);
-      this.setState({
-        external_tasks: message, //JSON.stringify(message)
-      });
-    });
+    /* var host = 'http://192.168.1.107:3535';
+      axios
+        .post(host + '/camunda/pollExternalTasks')
+        .then(res => {
+          var external_tasks = JSON.stringify(res.data);
+          this.setState({
+            external_tasks: external_tasks,
+          });
+        })
+        .catch(err => console.log(err)); */
+        connect(message => {
+          console.log(message);
+          this.setState({
+            external_tasks: message, //JSON.stringify(message)
+          });
+        });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+   
+  }
+  
   render() {
     if (!this.state.external_tasks) {
       return <Cssloader />;
@@ -98,6 +113,7 @@ export default class ExternalTaskPolling extends Component {
           striped
           bordered
           small
+          hover
           data={data}
         />
       </div>

@@ -34,7 +34,7 @@ io.on('connection', function(socket) {
       //else res.send(body);
       else io.emit('polled_tasks', body);
     });
-  }, 10000);
+  }, 30000);
 });
 
 server.listen(5000, () => {

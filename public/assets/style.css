@@ -1,7 +1,8 @@
 h2{
   text-align: center
 }
-ul {
+
+.ul_header {
 list-style-type: none;
 margin: 0;
 padding: 0;
@@ -9,17 +10,17 @@ overflow: hidden;
 background-color: #333;
 }
 
-li {
-    float: left;
-border-right:1px solid #bbb;
+.ul_header li {
+  float: left;
+  border-right:1px solid #bbb;
 }
 
-li:last-child {
+.ul_header li:last-child {
     border-right: none;
 }
 
-li a {
-    display: block;
+.ul_header li a {
+display: block;
 color: white;
 text-align: center;
 padding: 14px 16px;
@@ -27,41 +28,50 @@ text-decoration: none;
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+  background-color: #111;
 }
 
 .active {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
 }
 
-/* Table styles */ 
-.table{
+/* table_task styles */ 
+.table_task{
   /*   width: 100%; */
     width: 1000px;
     margin-left: 200px;
     border-collapse: collapse;
   }
-  .table th{
+  .table_task th{
     padding : 12px 0px 12px 0px;
     text-align: center;
     color: white;
     background-color: #4CAF50;
     border:1px solid #ddd;
   }
-  .table td{
+  .table_task td{
     padding: 8px;
     text-align: left;
     border:1px solid #ddd;
   }
-  .table tr:hover{
+  .table_task tr:hover{
     background-color: #ddd;
   }
-  .table tr:nth-child(even){
+  .table_task tr:nth-child(even){
     background-color: #f2f2f2
   }
-/* Table styles ends*/ 
+/* table_task styles ends*/ 
 
+/*datatable styles */ 
+.dataTables_wrapper  {
+  width: 900px !important;
+  margin-left: 200px;
+}
+.table th{
+  background-color: #4CAF50
+}
 
+/*datatable styles end */ 
 /*Loader style */
 .loader {
     border: 16px solid #f3f3f3;

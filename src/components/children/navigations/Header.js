@@ -5,7 +5,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <ul>
+        <ul className="ul_header">
           <li>
             <a className="active" href="/#home">
               Home
@@ -24,7 +24,7 @@ export default class Header extends Component {
             <a href="/#externaltasks">External Tasks</a>
           </li>
           <li style={{ float: 'right' }}>
-            <a href="#about">Users</a>
+            <a href="#about">Login</a>
           </li>
         </ul>
         <Routes />

@@ -23,7 +23,7 @@ export default class TaskPolling extends Component {
           });
         })
         .catch(err => console.log(err));
-    }, 5000);
+    }, 3000);
   }
   componentWillUnmount() {
     clearInterval(this.timer);
@@ -37,7 +37,7 @@ export default class TaskPolling extends Component {
       <div>
         <React.Fragment>
           <h2 style={{ textAlign: 'center' }}>Camunda Tasks</h2>
-          <table className="table">
+          <table className="table_task">
             <tbody>
               <tr>
                 <th>Task Id</th>
