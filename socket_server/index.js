@@ -18,7 +18,7 @@ io.on('connection', function(socket) {
   // `chat` channel with "Hello World"
   // Our clientside should be able to see
   // this and print it out in the console
-  
+
   //call api to get all the external tasks in particular intervals
   setInterval(() => {
     var host = 'http://192.168.1.104:8080';

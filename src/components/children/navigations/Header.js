@@ -24,7 +24,7 @@ export default class Header extends Component {
             <a href="/#externaltasks">External Tasks</a>
           </li>
           <li style={{ float: 'right' }}>
-            <a href="#about">Login</a>
+            <a href="/#login">Login</a>
           </li>
         </ul>
         <Routes />

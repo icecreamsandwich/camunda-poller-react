@@ -22,18 +22,16 @@ export default class ExternalTaskPolling extends Component {
           });
         })
         .catch(err => console.log(err)); */
-        connect(message => {
-          console.log(message);
-          this.setState({
-            external_tasks: message, //JSON.stringify(message)
-          });
-        });
+    connect(message => {
+      console.log(message);
+      this.setState({
+        external_tasks: message, //JSON.stringify(message)
+      });
+    });
   }
 
-  componentDidUpdate(prevProps, prevState) {
-   
-  }
-  
+  componentDidUpdate(prevProps, prevState) {}
+
   render() {
     if (!this.state.external_tasks) {
       return <Cssloader />;
@@ -45,39 +43,39 @@ export default class ExternalTaskPolling extends Component {
           activityId: items.activityId,
           executionId: items.executionId,
           processDefinitionId: items.processDefinitionId,
-          processInstanceId: items.processInstanceId
-        })
+          processInstanceId: items.processInstanceId,
+        });
         return rows;
-      })
+      });
       var data = {
         columns: [
           {
             label: 'activityId',
             field: 'activityId',
             sort: 'asc',
-            width: 150
+            width: 150,
           },
           {
             label: 'executionId',
             field: 'executionId',
             sort: 'asc',
-            width: 150
+            width: 150,
           },
           {
             label: 'processDefinitionId',
             field: 'processDefinitionId',
             sort: 'asc',
-            width: 150
+            width: 150,
           },
           {
             label: 'processInstanceId',
             field: 'processInstanceId',
             sort: 'asc',
-            width: 150
+            width: 150,
           },
         ],
-        rows: rows
-      }
+        rows: rows,
+      };
     }
     return (
       <div>
@@ -109,13 +107,7 @@ export default class ExternalTaskPolling extends Component {
               : ''}
           </tbody>
         </table> */}
-        <MDBDataTable
-          striped
-          bordered
-          small
-          hover
-          data={data}
-        />
+        <MDBDataTable striped bordered small hover data={data} />
       </div>
     );
   }

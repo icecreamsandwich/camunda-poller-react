@@ -18,7 +18,7 @@ app.use(
 );
 
 //App entry point
-app.get("/", function(req, res) {
+app.get('/', function(req, res) {
   res.send(`app is listening on port ${port}`);
 });
 
