@@ -68,7 +68,8 @@ li a:hover:not(.active) {
   margin-left: 200px;
 }
 .table th{
-  background-color: #4CAF50
+  background-color: #4CAF50;
+  font-weight: 700 !important;
 }
 
 /*datatable styles end */ 

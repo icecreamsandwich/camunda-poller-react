@@ -6,31 +6,29 @@ import ProcessDefinitions from './children/ProcessDefinitions';
 import ProcessInstances from './children/ProcessInstances';
 import Home from './children/Home';
 import Login from './children/Login';
+import Logout from './children/Logout';
+import FakeAuth from './FakeAuth';
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-
-}
 //Private Route
 const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true ?
-      <Component {...props} /> :
-      <Redirect to='/login' />
-  )}
-
+  <Route
+    {...rest}
+    render={props =>
+      FakeAuth.isAuthenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: {
+              from: props.location,
+            },
+          }}
+        />
+      )
+    }
   />
-  
-)
-
+);
 
 export default class Routes extends Component {
   render() {
@@ -38,12 +36,13 @@ export default class Routes extends Component {
       <HashRouter>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        <Route path="/tasks" component={TaskPolling} />
+        <PrivateRoute path="/tasks" component={TaskPolling} />
         {/* <Route path="/processDefs" component={ProcessDefinitions} /> */}
         <PrivateRoute path="/processDefs" component={ProcessDefinitions} />
-        <Route path="/processInsts" component={ProcessInstances} />
-        <Route path="/externaltasks" component={ExternalTaskPolling} />
+        <PrivateRoute path="/processInsts" component={ProcessInstances} />
+        <PrivateRoute path="/externaltasks" component={ExternalTaskPolling} />
         <Route path="/login" component={Login} />
+        <Route path="/logout" component={Logout} />
       </HashRouter>
     );
   }
