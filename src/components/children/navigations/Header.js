@@ -4,30 +4,22 @@ import FakeAuth from '../../FakeAuth';
 
 export default class Header extends Component {
   state = {
-    isAuthenticated : false
-  }
+    isAuthenticated: false,
+  };
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({
-        isAuthenticated  : FakeAuth.isAuthenticated
-      })
+        isAuthenticated: FakeAuth.isAuthenticated,
+      });
     }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer)
+    clearInterval(this.timer);
   }
 
-  logout = () =>{
-    FakeAuth.signout();
-    this.setState({
-      isAuthenticated: false
-    })
-  }
-  
-  
   render() {
-    console.log(this.state.isAuthenticated)
+    console.log(this.state.isAuthenticated);
     return (
       <div>
         <ul className="ul_header">
@@ -49,8 +41,11 @@ export default class Header extends Component {
             <a href="/#externaltasks">External Tasks</a>
           </li>
           <li style={{ float: 'right' }}>
-            {FakeAuth.isAuthenticated === true ? <a href="/#logout">Logout</a> : <a href="/#login">Login</a>}
-            {/*  <a href="/#login">Login</a> */}
+            {FakeAuth.isAuthenticated === true ? (
+              <a href="/#logout">Logout</a>
+            ) : (
+              <a href="/#login">Login</a>
+            )}
           </li>
         </ul>
         <Routes />

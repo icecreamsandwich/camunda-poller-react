@@ -17,6 +17,8 @@ export default class Login extends Component {
   //Form Submit Handler
   SubmitForm = e => {
     e.preventDefault();
+    //TODO
+    //check in db that entered username and password is correct
     if (this.state.username === 'admin' && this.state.password === 'admin') {
       FakeAuth.authenticate(() => {
         this.setState(() => ({
@@ -37,7 +39,7 @@ export default class Login extends Component {
     return (
       <React.Fragment>
         <div>
-          <h2>Login Form</h2>
+          <h2>Login</h2>
 
           <form onSubmit={e => this.SubmitForm(e)}>
             <div className="imgcontainer">
@@ -55,7 +57,7 @@ export default class Login extends Component {
               <input
                 type="text"
                 onChange={e => this.handleChange(e)}
-                placeholder="Enter Username"
+                placeholder="Enter Username : admin"
                 name="username"
                 required
               />
@@ -66,7 +68,7 @@ export default class Login extends Component {
               <input
                 type="password"
                 onChange={e => this.handleChange(e)}
-                placeholder="Enter Password"
+                placeholder="Enter Password : admin"
                 name="password"
                 required
               />

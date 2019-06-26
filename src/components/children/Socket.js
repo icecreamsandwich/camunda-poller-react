@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://192.168.1.107:5000/');
+const socket = openSocket(process.env.REACT_APP_HOST_URL + ':5000/');
 
 function connect(cb) {
   // listen for any messages coming through

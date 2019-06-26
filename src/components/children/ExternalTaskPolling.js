@@ -12,16 +12,6 @@ export default class ExternalTaskPolling extends Component {
     external_tasks: '',
   };
   componentDidMount() {
-    /* var host = 'http://192.168.1.107:3535';
-      axios
-        .post(host + '/camunda/pollExternalTasks')
-        .then(res => {
-          var external_tasks = JSON.stringify(res.data);
-          this.setState({
-            external_tasks: external_tasks,
-          });
-        })
-        .catch(err => console.log(err)); */
     connect(message => {
       console.log(message);
       this.setState({
